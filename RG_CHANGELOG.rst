@@ -20,3 +20,4 @@ Added:
 Changed:
 ========
 * add logo to header components from the brand package (RGOeX-24524)
+* update translations from Translations (RGOeX-24524)
