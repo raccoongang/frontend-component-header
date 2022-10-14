@@ -6,6 +6,7 @@ import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Dropdown } from '@edx/paragon';
 import messages from './messages';
+var showGamification = process.env.ENABLE_RG_GAMIFICATION ? process.env.ENABLE_RG_GAMIFICATION.toLowerCase() === 'true' : null;
 var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
   var intl = _ref.intl,
     username = _ref.username;
@@ -28,7 +29,11 @@ var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
     className: "d-none d-md-inline"
   }, username)), /*#__PURE__*/React.createElement(Dropdown.Menu, {
     className: "dropdown-menu-right"
-  }, dashboardMenuItem, /*#__PURE__*/React.createElement(Dropdown.Item, {
+  }, dashboardMenuItem, showGamification && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Dropdown.Item, {
+    href: "".concat(getConfig().LMS_BASE_URL, "/gamma_dashboard/dashboard")
+  }, intl.formatMessage(messages.performance)), /*#__PURE__*/React.createElement(Dropdown.Item, {
+    href: "".concat(getConfig().LMS_BASE_URL, "/gamma_dashboard/leaderboard")
+  }, intl.formatMessage(messages.leaderboard))), /*#__PURE__*/React.createElement(Dropdown.Item, {
     href: "".concat(getConfig().ACCOUNT_PROFILE_URL, "/u/").concat(username)
   }, intl.formatMessage(messages.profile)), /*#__PURE__*/React.createElement(Dropdown.Item, {
     href: getConfig().ACCOUNT_SETTINGS_URL

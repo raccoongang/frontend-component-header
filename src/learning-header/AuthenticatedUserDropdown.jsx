@@ -9,6 +9,8 @@ import { Dropdown } from '@edx/paragon';
 
 import messages from './messages';
 
+const showGamification = process.env.ENABLE_RG_GAMIFICATION ? process.env.ENABLE_RG_GAMIFICATION.toLowerCase() === 'true' : null;
+
 const AuthenticatedUserDropdown = ({ intl, username }) => {
   const dashboardMenuItem = (
     <Dropdown.Item href={`${getConfig().LMS_BASE_URL}/dashboard`}>
@@ -28,6 +30,16 @@ const AuthenticatedUserDropdown = ({ intl, username }) => {
         </Dropdown.Toggle>
         <Dropdown.Menu className="dropdown-menu-right">
           {dashboardMenuItem}
+          {showGamification && (
+            <>
+              <Dropdown.Item href={`${getConfig().LMS_BASE_URL}/gamma_dashboard/dashboard`}>
+                {intl.formatMessage(messages.performance)}
+              </Dropdown.Item>
+              <Dropdown.Item href={`${getConfig().LMS_BASE_URL}/gamma_dashboard/leaderboard`}>
+                {intl.formatMessage(messages.leaderboard)}
+              </Dropdown.Item>
+            </>
+          )}
           <Dropdown.Item href={`${getConfig().ACCOUNT_PROFILE_URL}/u/${username}`}>
             {intl.formatMessage(messages.profile)}
           </Dropdown.Item>

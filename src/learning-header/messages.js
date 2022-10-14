@@ -36,6 +36,16 @@ const messages = defineMessages({
     defaultMessage: 'Sign Out',
     description: 'The label for the user menu Sign Out action.',
   },
+  performance: {
+    id: 'header.menu.performance.label',
+    defaultMessage: 'Performance',
+    description: 'The label for the user menu Gamma dashboard action.',
+  },
+  leaderboard: {
+    id: 'header.menu.leaderboard.label',
+    defaultMessage: 'Leaderboard',
+    description: 'The label for the user menu Gamma leaderboard action.',
+  },
 });
 
 export default messages;

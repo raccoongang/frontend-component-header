@@ -15,6 +15,8 @@ import MobileHeader from './MobileHeader';
 
 import messages from './Header.messages';
 
+const showGamification = process.env.ENABLE_RG_GAMIFICATION ? process.env.ENABLE_RG_GAMIFICATION.toLowerCase() === 'true' : null;
+
 ensureConfig([
   'LMS_BASE_URL',
   'LOGOUT_URL',
@@ -38,6 +40,19 @@ const Header = ({ intl }) => {
       type: 'item',
       href: `${config.LMS_BASE_URL}/dashboard`,
       content: intl.formatMessage(messages['header.links.courses']),
+    },
+  ];
+
+  const gamificationItems = [
+    {
+      type: 'item',
+      href: `${config.LMS_BASE_URL}/gamma_dashboard/dashboard`,
+      content: intl.formatMessage(messages['header.menu.performance.label']),
+    },
+    {
+      type: 'item',
+      href: `${config.LMS_BASE_URL}/gamma_dashboard/leaderboard`,
+      content: intl.formatMessage(messages['header.menu.leaderboard.label']),
     },
   ];
 
@@ -69,6 +84,11 @@ const Header = ({ intl }) => {
       content: intl.formatMessage(messages['header.user.menu.logout']),
     },
   ];
+
+  // Users should see gamification links only if it enabled.
+  if (showGamification) {
+    userMenu.splice(1, 0, ...gamificationItems);
+  }
 
   // Users should only see Order History if have a ORDER_HISTORY_URL define in the environment.
   if (config.ORDER_HISTORY_URL) {

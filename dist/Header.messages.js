@@ -109,6 +109,16 @@ var messages = defineMessages({
     id: 'header.label.app.nav',
     defaultMessage: 'App',
     description: 'The aria label for the app Nav'
+  },
+  'header.menu.performance.label': {
+    id: 'header.menu.performance.label',
+    defaultMessage: 'Performance',
+    description: 'The label for the user menu Gamma dashboard action.'
+  },
+  'header.menu.leaderboard.label': {
+    id: 'header.menu.leaderboard.label',
+    defaultMessage: 'Leaderboard',
+    description: 'The label for the user menu Gamma leaderboard action.'
   }
 });
 export default messages;

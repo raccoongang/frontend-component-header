@@ -15,7 +15,7 @@ Fixes:
 
 Added:
 =====
-*
+* add Gamification links in the MFE header by env flag (RGOeX-24524)(RGOeX-24821)
 
 Changed:
 ========
