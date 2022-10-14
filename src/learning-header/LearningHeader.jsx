@@ -4,24 +4,24 @@ import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 
+// eslint-disable-next-line import/no-unresolved
+import { logoHeader } from '@edx/brand';
 import AnonymousUserMenu from './AnonymousUserMenu';
 import AuthenticatedUserDropdown from './AuthenticatedUserDropdown';
 import messages from './messages';
 
 const LinkedLogo = ({
   href,
-  src,
   alt,
   ...attributes
 }) => (
   <a href={href} {...attributes}>
-    <img className="d-block" src={src} alt={alt} />
+    <img className="d-block" src={logoHeader} alt={alt} />
   </a>
 );
 
 LinkedLogo.propTypes = {
   href: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
@@ -34,7 +34,7 @@ const LearningHeader = ({
     <LinkedLogo
       className="logo"
       href={`${getConfig().LMS_BASE_URL}/dashboard`}
-      src={getConfig().LOGO_URL}
+      src={logoHeader}
       alt={getConfig().SITE_NAME}
     />
   );
@@ -42,7 +42,7 @@ const LearningHeader = ({
   return (
     <header className="learning-header">
       <a className="sr-only sr-only-focusable" href="#main-content">{intl.formatMessage(messages.skipNavLink)}</a>
-      <div className="container-xl py-2 d-flex align-items-center">
+      <div className="container-fluid d-flex align-items-center">
         {headerLogo}
         <div className="flex-grow-1 course-title-lockup" style={{ lineHeight: 1 }}>
           <span className="d-block small m-0">{courseOrg} {courseNumber}</span>

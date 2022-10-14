@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-unresolved
+import { logoHeader } from '@edx/brand';
 
-const Logo = ({ src, alt, ...attributes }) => (
-  <img src={src} alt={alt} {...attributes} />
+const Logo = ({ alt, ...attributes }) => (
+  <img src={logoHeader} alt={alt} {...attributes} />
 );
 
 Logo.propTypes = {
-  src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
 const LinkedLogo = ({
   href,
-  src,
   alt,
   ...attributes
 }) => (
   <a href={href} {...attributes}>
-    <img className="d-block" src={src} alt={alt} />
+    <img className="d-block" src={logoHeader} alt={alt} />
   </a>
 );
 
 LinkedLogo.propTypes = {
   href: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 };
 
