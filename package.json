@@ -7,9 +7,11 @@
     "access": "public"
   },
   "scripts": {
+    "prepare": "husky install",
     "build": "make build",
     "i18n_extract": "BABEL_ENV=i18n fedx-scripts babel src --quiet > /dev/null",
     "lint": "fedx-scripts eslint --ext .js --ext .jsx .",
+    "lint-style": "stylelint \"src/**/*.scss\"",
     "snapshot": "fedx-scripts jest --updateSnapshot",
     "start": "fedx-scripts webpack-dev-server --progress",
     "test": "fedx-scripts jest --coverage"
@@ -33,6 +35,8 @@
   },
   "homepage": "https://github.com/openedx/frontend-component-header#readme",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
     "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
     "@edx/browserslist-config": "^1.1.1",
     "@edx/frontend-build": "12.9.10",
@@ -53,7 +57,9 @@
     "react-router-dom": "6.15.0",
     "react-test-renderer": "17.0.2",
     "redux": "4.2.1",
-    "redux-saga": "1.2.3"
+    "redux-saga": "1.2.3",
+    "stylelint": "^14.15.0",
+    "stylelint-config-standard-scss": "^6.1.0"
   },
   "dependencies": {
     "@edx/paragon": "21.1.10",

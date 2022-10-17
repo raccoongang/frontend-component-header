@@ -15,6 +15,7 @@ Fixes:
 
 Added:
 =====
+* add CI checkers: add pre-commit-hooks, .gitlab-ci.yml, style checkers (RGOeX-24524)(MC-36)
 * add Gamification links in the MFE header by env flag (RGOeX-24524)(RGOeX-24821)
 
 Changed:
