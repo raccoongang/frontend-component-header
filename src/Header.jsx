@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+
+import CookiePolicyBanner from '@edx/frontend-component-cookie-policy-banner';
+import { getLocale, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import {
   APP_CONFIG_INITIALIZED,
@@ -120,8 +122,13 @@ const Header = ({ intl }) => {
     loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
 
+  const ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined
+    ? getConfig().ENABLE_COOKIE_POLICY_BANNER
+    : true;
+
   return (
     <>
+      {ENABLE_COOKIE_POLICY_BANNER ? <CookiePolicyBanner languageCode={getLocale()} /> : null}
       <Responsive maxWidth={768}>
         <MobileHeader {...props} />
       </Responsive>

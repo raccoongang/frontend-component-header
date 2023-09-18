@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import CookiePolicyBanner from '@edx/frontend-component-cookie-policy-banner';
 import { getConfig } from '@edx/frontend-platform';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getLocale, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 
 // eslint-disable-next-line import/no-unresolved
@@ -39,8 +40,13 @@ const LearningHeader = ({
     />
   );
 
+  const ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined
+    ? getConfig().ENABLE_COOKIE_POLICY_BANNER
+    : true;
+
   return (
     <header className="learning-header">
+      {ENABLE_COOKIE_POLICY_BANNER ? <CookiePolicyBanner languageCode={getLocale()} /> : null}
       <a className="sr-only sr-only-focusable" href="#main-content">{intl.formatMessage(messages.skipNavLink)}</a>
       <div className="container-fluid d-flex align-items-center">
         {headerLogo}

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import CookiePolicyBanner from '@edx/frontend-component-cookie-policy-banner';
+import { getLocale, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import { APP_CONFIG_INITIALIZED, ensureConfig, mergeConfig, getConfig, subscribe } from '@edx/frontend-platform';
 import DesktopHeader from './DesktopHeader';
@@ -84,7 +85,10 @@ var Header = function Header(_ref) {
     userMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : userMenu,
     loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Responsive, {
+  var ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined ? getConfig().ENABLE_COOKIE_POLICY_BANNER : true;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, ENABLE_COOKIE_POLICY_BANNER ? /*#__PURE__*/React.createElement(CookiePolicyBanner, {
+    languageCode: getLocale()
+  }) : null, /*#__PURE__*/React.createElement(Responsive, {
     maxWidth: 768
   }, /*#__PURE__*/React.createElement(MobileHeader, props)), /*#__PURE__*/React.createElement(Responsive, {
     minWidth: 769

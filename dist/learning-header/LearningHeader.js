@@ -4,8 +4,9 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import CookiePolicyBanner from '@edx/frontend-component-cookie-policy-banner';
 import { getConfig } from '@edx/frontend-platform';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getLocale, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 
 // eslint-disable-next-line import/no-unresolved
@@ -43,9 +44,12 @@ var LearningHeader = function LearningHeader(_ref2) {
     src: logoHeader,
     alt: getConfig().SITE_NAME
   });
+  var ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined ? getConfig().ENABLE_COOKIE_POLICY_BANNER : true;
   return /*#__PURE__*/React.createElement("header", {
     className: "learning-header"
-  }, /*#__PURE__*/React.createElement("a", {
+  }, ENABLE_COOKIE_POLICY_BANNER ? /*#__PURE__*/React.createElement(CookiePolicyBanner, {
+    languageCode: getLocale()
+  }) : null, /*#__PURE__*/React.createElement("a", {
     className: "sr-only sr-only-focusable",
     href: "#main-content"
   }, intl.formatMessage(messages.skipNavLink)), /*#__PURE__*/React.createElement("div", {
