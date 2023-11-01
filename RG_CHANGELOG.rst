@@ -9,9 +9,8 @@ and this project adheres to customized Semantic Versioning e.g.: `palm-rg.1`
 [Unreleased]
 ************
 
-Fixes:
-======
-*
+[palm-rg.1] 2023-11-03 (Palm RG release)
+****************************************
 
 Added:
 =====
