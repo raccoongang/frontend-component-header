@@ -45,11 +45,11 @@ var LearningHeader = function LearningHeader(_ref2) {
     alt: getConfig().SITE_NAME
   });
   var ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined ? getConfig().ENABLE_COOKIE_POLICY_BANNER : true;
-  return /*#__PURE__*/React.createElement("header", {
-    className: "learning-header"
-  }, ENABLE_COOKIE_POLICY_BANNER ? /*#__PURE__*/React.createElement(CookiePolicyBanner, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, ENABLE_COOKIE_POLICY_BANNER ? /*#__PURE__*/React.createElement(CookiePolicyBanner, {
     languageCode: getLocale()
-  }) : null, /*#__PURE__*/React.createElement("a", {
+  }) : null, /*#__PURE__*/React.createElement("header", {
+    className: "learning-header"
+  }, /*#__PURE__*/React.createElement("a", {
     className: "sr-only sr-only-focusable",
     href: "#main-content"
   }, intl.formatMessage(messages.skipNavLink)), /*#__PURE__*/React.createElement("div", {
@@ -65,7 +65,7 @@ var LearningHeader = function LearningHeader(_ref2) {
     className: "d-block m-0 font-weight-bold course-title"
   }, courseTitle)), showUserDropdown && authenticatedUser && /*#__PURE__*/React.createElement(AuthenticatedUserDropdown, {
     username: authenticatedUser.username
-  }), showUserDropdown && !authenticatedUser && /*#__PURE__*/React.createElement(AnonymousUserMenu, null)));
+  }), showUserDropdown && !authenticatedUser && /*#__PURE__*/React.createElement(AnonymousUserMenu, null))));
 };
 LearningHeader.propTypes = {
   courseOrg: PropTypes.string,
