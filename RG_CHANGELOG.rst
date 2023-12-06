@@ -9,6 +9,13 @@ and this project adheres to customized Semantic Versioning e.g.: `palm-rg.1`
 [Unreleased]
 ************
 
+[palm-rg.2] release 2023-12-01
+******************************
+
+Added:
+=====
+* Applied the same style to cookie banners on all MFE pages (RGOeX-26235)
+
 [palm-rg.1] 2023-11-03 (Palm RG release)
 ****************************************
 
