@@ -112,7 +112,8 @@ var DesktopHeader = /*#__PURE__*/function (_React$Component) {
         userMenu = _this$props.userMenu,
         avatar = _this$props.avatar,
         username = _this$props.username,
-        intl = _this$props.intl;
+        intl = _this$props.intl,
+        email = _this$props.email;
       return /*#__PURE__*/React.createElement(Menu, {
         transitionClassName: "menu-dropdown",
         transitionTimeout: 250
@@ -127,7 +128,7 @@ var DesktopHeader = /*#__PURE__*/function (_React$Component) {
         src: avatar,
         alt: "",
         className: "mr-2"
-      }), username, " ", /*#__PURE__*/React.createElement(CaretIcon, {
+      }), email, " ", /*#__PURE__*/React.createElement(CaretIcon, {
         role: "img",
         "aria-hidden": true,
         focusable: "false"

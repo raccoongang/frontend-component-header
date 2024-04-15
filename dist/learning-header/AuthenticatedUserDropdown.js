@@ -9,7 +9,8 @@ import messages from './messages';
 var showGamification = process.env.ENABLE_RG_GAMIFICATION ? process.env.ENABLE_RG_GAMIFICATION.toLowerCase() === 'true' : null;
 var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
   var intl = _ref.intl,
-    username = _ref.username;
+    username = _ref.username,
+    email = _ref.email;
   var dashboardMenuItem = /*#__PURE__*/React.createElement(Dropdown.Item, {
     href: "".concat(getConfig().LMS_BASE_URL, "/dashboard")
   }, intl.formatMessage(messages.dashboard));
@@ -27,7 +28,7 @@ var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
   }), /*#__PURE__*/React.createElement("span", {
     "data-hj-suppress": true,
     className: "d-none d-md-inline"
-  }, username)), /*#__PURE__*/React.createElement(Dropdown.Menu, {
+  }, email)), /*#__PURE__*/React.createElement(Dropdown.Menu, {
     className: "dropdown-menu-right"
   }, dashboardMenuItem, showGamification && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Dropdown.Item, {
     href: "".concat(getConfig().LMS_BASE_URL, "/gamma_dashboard/dashboard")

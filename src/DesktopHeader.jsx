@@ -78,6 +78,7 @@ class DesktopHeader extends React.Component {
       avatar,
       username,
       intl,
+      email,
     } = this.props;
 
     return (
@@ -88,7 +89,7 @@ class DesktopHeader extends React.Component {
           className="btn btn-outline-primary d-inline-flex align-items-center pl-2 pr-3"
         >
           <Avatar size="1.5em" src={avatar} alt="" className="mr-2" />
-          {username} <CaretIcon role="img" aria-hidden focusable="false" />
+          {email} <CaretIcon role="img" aria-hidden focusable="false" />
         </MenuTrigger>
         <MenuContent className="mb-0 dropdown-menu show dropdown-menu-right pin-right shadow py-2">
           {userMenu.map(({ type, href, content }) => (
@@ -173,6 +174,7 @@ DesktopHeader.propTypes = {
     href: PropTypes.string,
     content: PropTypes.string,
   })),
+  email: PropTypes.string,
   logo: PropTypes.string,
   logoAltText: PropTypes.string,
   logoDestination: PropTypes.string,
@@ -209,6 +211,7 @@ DesktopHeader.defaultProps = {
   username: null,
   loggedIn: false,
   appMenu: null,
+  email: null,
 };
 
 export default injectIntl(DesktopHeader);

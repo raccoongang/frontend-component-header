@@ -58,6 +58,7 @@ const LearningHeader = ({
           {showUserDropdown && authenticatedUser && (
             <AuthenticatedUserDropdown
               username={authenticatedUser.username}
+              email={authenticatedUser.email}
             />
           )}
           {showUserDropdown && !authenticatedUser && (
