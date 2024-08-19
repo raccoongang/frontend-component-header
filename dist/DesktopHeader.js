@@ -214,6 +214,7 @@ DesktopHeader.propTypes = {
     href: PropTypes.string,
     content: PropTypes.string
   })),
+  email: PropTypes.string,
   logo: PropTypes.string,
   logoAltText: PropTypes.string,
   logoDestination: PropTypes.string,
@@ -242,7 +243,8 @@ DesktopHeader.defaultProps = {
   avatar: null,
   username: null,
   loggedIn: false,
-  appMenu: null
+  appMenu: null,
+  email: null
 };
 export default injectIntl(DesktopHeader);
 //# sourceMappingURL=DesktopHeader.js.map

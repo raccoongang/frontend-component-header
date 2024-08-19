@@ -44,6 +44,11 @@ var messages = defineMessages({
     id: 'header.menu.leaderboard.label',
     defaultMessage: 'Leaderboard',
     description: 'The label for the user menu Gamma leaderboard action.'
+  },
+  userOptionsDropdownLabel: {
+    id: 'header.menu.aria-label',
+    defaultMessage: 'User Options',
+    description: 'The aria-label for the user options dropdown.'
   }
 });
 export default messages;

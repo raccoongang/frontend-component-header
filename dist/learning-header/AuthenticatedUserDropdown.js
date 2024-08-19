@@ -20,7 +20,8 @@ var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
   }, intl.formatMessage(messages.help)), /*#__PURE__*/React.createElement(Dropdown, {
     className: "user-dropdown ml-3"
   }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
-    variant: "outline-primary"
+    variant: "outline-primary",
+    "aria-label": intl.formatMessage(messages.userOptionsDropdownLabel)
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: faUserCircle,
     className: "d-md-none",
@@ -46,7 +47,8 @@ var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
 };
 AuthenticatedUserDropdown.propTypes = {
   intl: intlShape.isRequired,
-  username: PropTypes.string.isRequired
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 };
 export default injectIntl(AuthenticatedUserDropdown);
 //# sourceMappingURL=AuthenticatedUserDropdown.js.map
