@@ -2,33 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Hyperlink } from '@openedx/paragon';
 
+import { navigateToUrl } from './utils';
+
 const BrandNav = ({
   studioBaseUrl,
   logo,
   logoAltText,
   onNavigate,
-}) => {
-  const handleClick = (e, url) => {
-    e.preventDefault();
-    const isAbsoluteUrl = /^https?:\/\//i.test(url);
-
-    if (isAbsoluteUrl) {
-      window.location.href = url;
-    } else if (onNavigate) {
-      onNavigate(`${url}`);
-    }
-  };
-
-  return (
-    <Hyperlink destination={studioBaseUrl} onClick={(e) => handleClick(e, studioBaseUrl)}>
-      <img
-        src={logo}
-        alt={logoAltText}
-        className="d-block logo"
-      />
-    </Hyperlink>
-  );
-};
+}) => (
+  <Hyperlink destination={studioBaseUrl} onClick={(e) => navigateToUrl(e, studioBaseUrl, onNavigate)}>
+    <img
+      src={logo}
+      alt={logoAltText}
+      className="d-block logo"
+    />
+  </Hyperlink>
+);
 
 BrandNav.propTypes = {
   studioBaseUrl: PropTypes.string.isRequired,

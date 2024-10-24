@@ -5,6 +5,8 @@ import {
   OverlayTrigger,
   Tooltip,
 } from '@openedx/paragon';
+
+import { navigateToUrl } from './utils';
 import messages from './messages';
 
 const CourseLockUp = ({
@@ -15,40 +17,27 @@ const CourseLockUp = ({
   onNavigate,
   // injected
   intl,
-}) => {
-  const handleClick = (e, url) => {
-    e.preventDefault();
-    const isAbsoluteUrl = /^https?:\/\//i.test(url);
-
-    if (isAbsoluteUrl) {
-      window.location.href = url;
-    } else if (onNavigate) {
-      onNavigate(`${url}`);
-    }
-  };
-
-  return (
-    <OverlayTrigger
-      placement="bottom"
-      overlay={(
-        <Tooltip id="course-lock-up">
-          {title}
-        </Tooltip>
+}) => (
+  <OverlayTrigger
+    placement="bottom"
+    overlay={(
+      <Tooltip id="course-lock-up">
+        {title}
+      </Tooltip>
     )}
+  >
+    <a
+      className="course-title-lockup mr-2"
+      href={outlineLink}
+      onClick={(e) => navigateToUrl(e, outlineLink, onNavigate)}
+      aria-label={intl.formatMessage(messages['header.label.courseOutline'])}
+      data-testid="course-lock-up-block"
     >
-      <a
-        className="course-title-lockup mr-2"
-        href={outlineLink}
-        onClick={(e) => handleClick(e, outlineLink)}
-        aria-label={intl.formatMessage(messages['header.label.courseOutline'])}
-        data-testid="course-lock-up-block"
-      >
-        <span className="d-block small m-0 text-gray-800" data-testid="course-org-number">{org} {number}</span>
-        <span className="d-block m-0 font-weight-bold text-gray-800" data-testid="course-title">{title}</span>
-      </a>
-    </OverlayTrigger>
-  );
-};
+      <span className="d-block small m-0 text-gray-800" data-testid="course-org-number">{org} {number}</span>
+      <span className="d-block m-0 font-weight-bold text-gray-800" data-testid="course-title">{title}</span>
+    </a>
+  </OverlayTrigger>
+);
 
 CourseLockUp.propTypes = {
   number: PropTypes.string,
