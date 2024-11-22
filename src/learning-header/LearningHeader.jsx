@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
+import { useLocation } from 'react-router-dom';
+import { ProductTour } from '@openedx/paragon';
 
 import AnonymousUserMenu from './AnonymousUserMenu';
 import AuthenticatedUserDropdown from './AuthenticatedUserDropdown';
@@ -11,6 +13,36 @@ import CourseInfoSlot from '../plugin-slots/CourseInfoSlot';
 import { courseInfoDataShape } from './LearningHeaderCourseInfo';
 import messages from './messages';
 import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
+
+const MyTourComponent = () => {
+  const [isTourEnabled, setIsTourEnabled] = useState(true);
+  const config = getConfig();
+  const location = useLocation();
+  const stepperInstructions = config[location.pathname]?.instruction;
+
+  if (!stepperInstructions) {
+    return null;
+  }
+
+  const myFirstTour = {
+    tourId: 'myFirstTour',
+    advanceButtonText: 'Next',
+    dismissButtonText: 'Dismiss',
+    endButtonText: 'Okay',
+    enabled: isTourEnabled,
+    onDismiss: () => setIsTourEnabled(false),
+    onEnd: () => setIsTourEnabled(false),
+    checkpoints: stepperInstructions.checkpoints.map((checkpoint) => ({
+      ...checkpoint,
+      onDismiss: checkpoint.onDismiss || (() => setIsTourEnabled(false)),
+      onEnd: checkpoint.onEnd || (() => setIsTourEnabled(false)),
+    })),
+  };
+
+  return (
+    <ProductTour tours={[myFirstTour]} />
+  );
+};
 
 const LearningHeader = ({
   courseOrg, courseNumber, courseTitle, intl, showUserDropdown,
@@ -27,6 +59,7 @@ const LearningHeader = ({
 
   return (
     <header className="learning-header">
+      <MyTourComponent />
       <a className="sr-only sr-only-focusable" href="#main-content">{intl.formatMessage(messages.skipNavLink)}</a>
       <div className="container-xl py-2 d-flex align-items-center">
         {headerLogo}
