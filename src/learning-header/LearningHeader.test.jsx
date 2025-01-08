@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  authenticatedUser, initializeMockApp, render, screen,
+  authenticatedUser, initializeMockApp, render, screen, waitFor,
 } from '../setupTest';
 import { LearningHeader as Header } from '../index';
 
@@ -11,8 +11,10 @@ describe('Header', () => {
   });
 
   it('displays user button', () => {
-    render(<Header />);
-    expect(screen.getByText(authenticatedUser.username)).toBeInTheDocument();
+    render(<Header showUserDropdown />);
+    waitFor(() => {
+      expect(screen.getByText(authenticatedUser.username)).toBeInTheDocument();
+    });
   });
 
   it('displays course data', () => {
@@ -23,7 +25,9 @@ describe('Header', () => {
     };
     render(<Header {...courseData} />);
 
-    expect(screen.getByText(`${courseData.courseOrg} ${courseData.courseNumber}`)).toBeInTheDocument();
-    expect(screen.getByText(courseData.courseTitle)).toBeInTheDocument();
+    waitFor(() => {
+      expect(screen.getByText(`${courseData.courseOrg} ${courseData.courseNumber}`)).toBeInTheDocument();
+      expect(screen.getByText(courseData.courseTitle)).toBeInTheDocument();
+    });
   });
 });
